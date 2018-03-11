@@ -1,0 +1,75 @@
+name: ChatWarn
+version: 1.4.7
+main: me.jones01sean.ChatWarn.ChatWarn
+description: Warn Other Players For Chat Related Issues!
+
+commands:
+    chatmute:
+        usage: /command <player>
+    checkupall:
+        usage: /<command>
+        description: Shows warn level for all players
+    setwarn:
+        usage: /<command> <player> <int>
+        description: Sets the warn level for a player
+    warn:
+        usage: /<command> <player> <reason>
+        description: Warn A Player.
+    resetuuid:
+        usage: /<command> <player>
+        description: Reset A Player's UUID Back To 0 Warnings
+    chatwarn:
+        usage: /<command> 
+        description: Basic Hub Command
+    chatload:
+        usage: /<command>
+        description: Reloads Plugin Config
+    chatcredits:
+        usage: /<command>
+        description: Shows Proper Credits to Contributers/Creators
+    banuuid:
+        usage: /<command> <player>
+        description: Bans A Player's UUID
+    checkup:
+        usage: /<command> <player>
+        description: Checks A Player's Warn Level
+permissions:
+    chatwarn.mute:
+        description: Permission node for the /chatmute command
+        default: op
+    chatwarn.checkupall:
+        description: Permission node for the /checkupall command
+        default: op
+    chatwarn.setwarn:
+        description: Sets the warn level for a player
+        default: op
+    chatwarn.warn:
+        description: Allows for the user to use /warn to warn other players for chat related issues.
+        default: op
+    chatwarn.uuid:
+        default: op
+        description: Allows for the user to reset a player's UUID back to 0 warnings.
+    chatwarn.credits:
+        default: true
+        description: Shows Credits Of ChatWarn Plugin
+    chatwarn.help:
+        default: true
+        description: Shows Help For Plugin
+    chatwarn.reload:
+        default: op
+        description: Reloads Plugin Configuration
+    chatwarn.banuuid:
+        default: op
+        description: Bans a players uuid
+    chatwarn.notify:
+        default: op
+        description: Notifys for a Players Punishment
+    chatwarn.checkup:
+        default: op
+        description: Checks A Players Warn Level
+    chatwarn.bypass:
+        default: op
+        description: Bypasses warnings and cannot be UUID banned
+    chatwarn.bypassall:
+        default: op
+        description: Bypasses the chatwarn.bypass permission and can warn anybody on the server

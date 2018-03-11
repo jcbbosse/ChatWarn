@@ -1,0 +1,38 @@
+#
+#        Thank you for downloading         
+#            ChatWarn v:1.4.5
+# WHATS NEW:
+# Added new permission and command to check all players warn levels
+# ANTI-ADVERTISEMENT PHRASES: (NON-CONFIGURABLE)
+# "come and join" "free op" "join my server"
+# "i'm from planet minecraft" and "im from planet minecraft"
+# KNOWN BUG(S):
+# When you do /resetuuid <player> on a player who has been warned previously (must be higher than one time) and you do /checkup <player whom you just re-setted his or her warn level> the player's warn level says "1" (It is actually 0 but it still says 1)
+# PERMISSIONS:
+# chatwarn.checkupall
+# chatwarn.setwarn
+# chatwarn.warn
+# chatwarn.uuid
+# chatwarn.credits
+# chatwarn.help
+# chatwarn.reload
+# chatwarn.banuuid
+# chatwarn.notify
+# chatwarn.checkup
+# chatwarn.bypass
+# chatwarn.bypassall (NOTE: ONLY GIVE THIS PERMISSION TO YOURSELF AND/OR CO-OWNER IT ALLOWS PEOPLE WITH THIS PERMISSION TO WARN ANYBODY EVEN IF THEY HAVE THE chatwarn.bypass PERMISSION!)
+# NOTE:
+# For easy player lookup do /checkupall or go to https://sessionserver.mojang.com/session/minecraft/profile/ and type in the UUID of the player you want but remove all "-" otherwise the link will not work
+# For the FirstMuteTime, the SecondMuteTime, and the ThirdMuteTime
+# The first one is in minutes
+# The second one is in hours
+# The third one is in days
+# ( KEEP THIS IN MIND FOR SETTING TIMES)
+#       END OF HEADER
+# The prefix for the messages
+ChatWarnPrefix: "&8[&2Chat&3Warn&8]"
+ChatWarnUpdater: false
+ChatWarnMuteToggle: false
+FirstMuteTime: 10
+SecondMuteTime: 1
+ThirdMuteTime: 1
