@@ -1,14 +1,9 @@
 package me.jones01sean.ChatWarn;
 
-
-
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
-
-import net.gravitydevelopment.updater.Updater;
-
+import net.gravitydevelopment.updater.Updater; // updater package
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
@@ -24,20 +19,12 @@ import org.bukkit.event.player.PlayerLoginEvent.Result;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class ChatWarn extends JavaPlugin implements Listener {
-
-
-
-	
 	@SuppressWarnings("unused")
 	public void onEnable() {
 		Bukkit.getServer().getPluginManager().registerEvents(this, this);
 		getConfig().options().copyDefaults(true);;
 		saveConfig();
 		Updater updater = new Updater(this, 92706, this.getFile(), Updater.UpdateType.NO_DOWNLOAD, false); // Start Updater but just do a version check
-
-		   
-		   
-		   
 		     if(getConfig().getBoolean("ChatWarnUpdater") == true){
 		    	 Updater updater1 = new Updater(this, 92706, this.getFile(), Updater.UpdateType.DEFAULT, true);
 		     }
@@ -53,8 +40,8 @@ public class ChatWarn extends JavaPlugin implements Listener {
 	}
 
 
-	@EventHandler
-    public void onPlayerChat(AsyncPlayerChatEvent e) {
+	@EventHandler 
+    public void onPlayerChat(AsyncPlayerChatEvent e) { // Anti-message cancel method
 		Player target = e.getPlayer();
 		String message = e.getMessage().toLowerCase();
 		String AntiPhraseMuteMsg =  ChatColor.RED + " Advertisement Detected Message Cancelled!";
@@ -70,9 +57,7 @@ public class ChatWarn extends JavaPlugin implements Listener {
 			e.setCancelled(true);
 			}
 		}
-		
-		
-		
+
 		if(message.contains("free") && message.contains("op")){
 			if(!target.hasPermission("chatwarn.bypass")){
 			target.sendMessage(ChatWarnPrefix + AntiPhraseMuteMsg);
@@ -112,7 +97,7 @@ public class ChatWarn extends JavaPlugin implements Listener {
 	
 	 public final HashMap<String, ArrayList<Block>> mutedPlayers = new HashMap<String, ArrayList<Block>>();
 	@EventHandler
-	public void onPlayerChatEvent(AsyncPlayerChatEvent event){
+	public void onPlayerChatEvent(AsyncPlayerChatEvent event){ // onChat method for muted players
 		Player player = event.getPlayer();
 		if(mutedPlayers.containsKey(player.getName())){
 			try {
@@ -132,41 +117,10 @@ public class ChatWarn extends JavaPlugin implements Listener {
 	     
 	     saveConfig();
 	}
-
-	/**
-	 * &0	BLACK
-&1	DARK BLUE
-&2	DARK GREEN
-&3	DARK AQUA
-&4	DARK RED
-&5	DARK PURPLE 
-&6	GOLD
-&7	GRAY
-&8	DARK GRAY
-&9	INDIGO
-&A GREEN
-&B	AQUA
-&C	RED
-&D	PINK
-&E	YELLOW
-&F	WHITE
-&M	STRIKE THROUGH
-&N	UNDERLINED
-&L	BOLD
-&K	RANDOM
-&O	ITALIC
-	 */
-	
 	String ChatWarnPrefix1 = getConfig().getString("ChatWarnPrefix"),
 	ChatWarnPrefix = ChatWarnPrefix1.replaceAll("(&([a-f0-9]))", "\u00A7$2");
 
-
-
-
-
-	
-	
-	String FirstMuteTime = getConfig().getString("FirstMuteTime");
+	String FirstMuteTime = getConfig().getString("FirstMuteTime"); // This may or may not work, I am unsure since it has been so long since i've last updated it and have no idea where i left off
 	String SecondMuteTime = getConfig().getString("SecondMuteTime");
 	String ThirdMuteTime = getConfig().getString("ThirdMuteTime");
 	
@@ -230,7 +184,7 @@ public class ChatWarn extends JavaPlugin implements Listener {
 			}
 					
 		}
-		
+		// THIS IS WHERE EVERYTHING GETS MESSY IM SORRY
 		if(cmd.getName().equalsIgnoreCase("setwarn")){
 			if(!sender.hasPermission("chatwarn.setwarn")){
 				sender.sendMessage(ChatColor.RED + "You Are Not Permitted To Do This Command.");
@@ -873,7 +827,7 @@ public class ChatWarn extends JavaPlugin implements Listener {
  
 	
 	@EventHandler
-	public void onPlayerLogin(PlayerLoginEvent e) {
+	public void onPlayerLogin(PlayerLoginEvent e) { // This message is for players who are being banned by the plugin (can be reset using /resetuuid <exact player name>)
 		
 		String uuid = e.getPlayer().getUniqueId().toString();
 		
@@ -883,7 +837,7 @@ public class ChatWarn extends JavaPlugin implements Listener {
 	}
 	
 	@EventHandler
-	public void onPlayerLogin1(PlayerLoginEvent e) {
+	public void onPlayerLogin1(PlayerLoginEvent e) { // This message is for players who try logging in after being banned by the plugin 
 		String uuid = e.getPlayer().getUniqueId().toString();
 		
 		if (getConfig().contains(uuid) && getConfig().getInt(uuid) == 19) {
@@ -893,7 +847,7 @@ public class ChatWarn extends JavaPlugin implements Listener {
 	@EventHandler
 	public void onPlayerChat2(AsyncPlayerChatEvent e ){
 		String uuid = e.getPlayer().getUniqueId().toString();
-/**		int counter;
+/**		int counter; //Not sure what this stuff is anymore tbh
 		int minute = 20*60;
 		int hour = minute*60;
 		int day = hour*24;
