@@ -171,13 +171,13 @@ public class ChatWarn extends JavaPlugin implements Listener {
 			
 			if(!mutedPlayers.containsKey(target.getName())){
 				mutedPlayers.put(target.getName(), null);
-				sender.sendMessage(ChatWarnPrefix + ChatColor.RED + " " + target.getName() + " is now muted!");
+				Bukkit.broadcast(ChatWarnPrefix + ChatColor.RED + " " + target.getName() + " is now muted!","chatwarn.notify");
 				target.sendMessage(ChatWarnPrefix + ChatColor.RED + " You are now muted by: " + sender.getName() + "!");
 				return true;
 			}
 			if(mutedPlayers.containsKey(target.getName())) {
 				mutedPlayers.remove(target.getName());
-				sender.sendMessage(ChatWarnPrefix + ChatColor.GREEN + " " + target.getName() + " is now unmuted!");
+				Bukkit.broadcast(ChatWarnPrefix + ChatColor.GREEN + " " + target.getName() + " is now unmuted!","chatwarn.notify");
 				target.sendMessage(ChatWarnPrefix + ChatColor.GREEN + " You are now unmuted by: " + sender.getName() + "!");
 
 				return true;
