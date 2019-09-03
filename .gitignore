@@ -12,3 +12,6 @@
 ChatWarn 3.0.iml
 bin/*
 dont-commit.rtf
+.idea/*
+.DS_Store
+src/.DS_Store
