@@ -4,6 +4,7 @@
 # Except for these files:
 !*.yml
 !.gitignore
+!.idea/.gitignore
 
 # Even if they are in sub-directories.
 !*/
