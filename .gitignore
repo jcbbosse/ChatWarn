@@ -16,7 +16,7 @@ dont-commit.rtf
 .idea/*
 .DS_Store
 *.iml
-.idea/
+.idea/*
 *.ipr
 *.iws
 out/
