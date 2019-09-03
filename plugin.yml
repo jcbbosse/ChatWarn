@@ -1,15 +1,38 @@
 name: ChatWarn
-version: 2.0.0
-main: com.gmail.artizangaming.ChatWarn
+version: 1.5.0
+main: me.jones01sean.ChatWarn.ChatWarn
 description: Warn Other Players For Chat Related Issues!
 
 commands:
+    chatmute:
+        usage: /command <player>
+    checkupall:
+        usage: /<command>
+        description: Shows warn level for all players
+    setwarn:
+        usage: /<command> <player> <int>
+        description: Sets the warn level for a player
+    warn:
+        usage: /<command> <player> <reason>
+        description: Warn A Player.
+    resetuuid:
+        usage: /<command> <player>
+        description: Reset A Player's UUID Back To 0 Warnings
     chatwarn:
         usage: /<command> 
         description: Basic Hub Command
-    warn:
-        usage: /<command> <player> <reason>
-        description: Warns the specified player
+    chatload:
+        usage: /<command>
+        description: Reloads Plugin Config
+    chatcredits:
+        usage: /<command>
+        description: Shows Proper Credits to Contributers/Creators
+    banuuid:
+        usage: /<command> <player>
+        description: Bans A Player's UUID
+    checkup:
+        usage: /<command> <player>
+        description: Checks A Player's Warn Level
 permissions:
     chatwarn.mute:
         description: Permission node for the /chatmute command

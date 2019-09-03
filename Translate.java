@@ -1,4 +1,4 @@
-package com.gmail.artizangaming;
+package me.jones01sean.ChatWarn;
 
 import java.io.BufferedReader;
 import java.io.IOException;
