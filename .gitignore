@@ -1,0 +1,14 @@
++# Ignore everything.
+
+
+# Except for these files:
+!*.yml
+!.gitignore
+
+# Even if they are in sub-directories.
+!*/
+
+# But continue to ignore the following:
+ChatWarn 3.0.iml
+bin/*
+dont-commit.rtf

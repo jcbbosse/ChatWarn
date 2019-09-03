@@ -1,4 +1,4 @@
-package me.jones01sean.ChatWarn;
+package com.gmail.artizangaming;
 import org.bukkit.entity.Player;
 
 public class UltimateAPI
