@@ -14,4 +14,9 @@ bin/*
 dont-commit.rtf
 .idea/*
 .DS_Store
-src/.DS_Store
+*.iml
+.idea/
+*.ipr
+*.iws
+out/
+.idea_modules/
