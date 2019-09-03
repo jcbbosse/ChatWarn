@@ -1,6 +1,6 @@
 #
-#        Thank you for downloading         
-#            ChatWarn v:1.5.0
+#           Thank you for using        
+#            ChatWarn v:2.0.0B
 # WHATS NEW:
 # Added multi-language support
 # A link to check what language code to use: https://ctrlq.org/code/19899-google-translate-languages
@@ -25,12 +25,15 @@
 # The second mute time is in hours
 # The third mute time is in days
 # ( KEEP THIS IN MIND FOR SETTING TIMES)
+# The EnableWarnCommandShortcut toggle means that if its set to true, then you can do /warn (player) (reason) without having to type /chatwarn warn (player) (reason)
 #       END OF HEADER
 # The prefix for the messages
 ChatWarnPrefix: "&8[&2Chat&3Warn&8]"
 ChatWarnUpdater: false
 ChatWarnMuteToggle: false
+EnableWarnCommandShortcut: true
 FirstMuteTime: 10
 SecondMuteTime: 1
 ThirdMuteTime: 1
 language: en_us
+disable_books: false
