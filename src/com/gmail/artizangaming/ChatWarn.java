@@ -275,17 +275,8 @@ public class ChatWarn extends JavaPlugin implements Listener,java.io.Serializabl
 	// All of the commands
 	@SuppressWarnings("deprecation")
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
-		
-		
 
-
-		
-
-
-			
-
-		
-		// Default command that displays all commands available from chatwarn (all commands will be unified in chatwarn v1.6)
+		// Default command that displays all commands available from chatwarn (all commands will be unified in chatwarn v2.0)
 		if (cmd.getName().equalsIgnoreCase("chatwarn")){
 			if(!sender.hasPermission("chatwarn.help")){
 				sender.sendMessage(ChatColor.RED + translate(noPerm, from, to));
@@ -330,7 +321,7 @@ public class ChatWarn extends JavaPlugin implements Listener,java.io.Serializabl
 				sender.sendMessage(ChatWarnPrefix + ChatColor.GREEN + translate(configReloaded,from,to));
 			}
 			
-			// Command to reset the warn level of a specified player back to 0
+			// Command to reset the warn level of a specified player back to 0 and notifies all players with the 'chatwarn.notify' permission who's uuid level got reset
 			if (args[0].equalsIgnoreCase("resetuuid")) {
 				if(!sender.hasPermission("chatwarn.uuid")){
 					sender.sendMessage(ChatColor.RED + translate(noPerm, from, to));
@@ -469,7 +460,7 @@ public class ChatWarn extends JavaPlugin implements Listener,java.io.Serializabl
 				return true;
 			}
 			
-			// Mutes the player specified (needs implementation on an in game time
+			// Mutes the player specified (needs work to allow temporary mutes w/o having staff from running the command again to unmute)
 			if(args[0].equalsIgnoreCase("mute")) {
 				if(!sender.hasPermission("chatwarn.mute")) {
 					sender.sendMessage(ChatColor.RED + translate(noPerm, from, to));
@@ -494,39 +485,13 @@ public class ChatWarn extends JavaPlugin implements Listener,java.io.Serializabl
 				}
 						
 			}
-			
-			// Checks the uuid int for all players on the server
 			/*
-			if(args[0].equalsIgnoreCase("checkupall")){
-				if(!sender.hasPermission("chatwarn.checkupall")){
-					sender.sendMessage(ChatColor.RED + translate(noPerm, from, to));
-					return true;
-				}
-				for(OfflinePlayer player : Bukkit.getOfflinePlayers()){
-					String uuid = player.getUniqueId().toString();
-					int id = getConfig().getInt(uuid);
-					
-					if(id == 16){
-						sender.sendMessage(ChatColor.GRAY + "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
-						sender.sendMessage(ChatColor.RED + "               UUID warn levels of all players");
-						sender.sendMessage(ChatColor.AQUA + Bukkit.getServer().getOfflinePlayer(UUID.fromString(uuid)).getName() + ": " + ChatColor.RED +  id + translate(tooManyWarningUUID, from, to));
-						return true;
-					}
-					if(id == 19){
-						sender.sendMessage(ChatColor.GRAY + "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
-						sender.sendMessage(ChatColor.RED + "               UUID warn levels of all players");
-						sender.sendMessage(ChatColor.AQUA + Bukkit.getServer().getOfflinePlayer(UUID.fromString(uuid)).getName() + ": " + ChatColor.RED +  id + " (UUID Banned)");
-						return true;
-					}
-					
-					if(id <=15){
-					sender.sendMessage(ChatColor.GRAY + "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
-					sender.sendMessage(ChatColor.RED + "               UUID warn levels of all players");
-					sender.sendMessage(ChatColor.AQUA + Bukkit.getServer().getOfflinePlayer(UUID.fromString(uuid)).getName() + ": " + ChatColor.RED +  id);
-					}
-				}
-			}*/
-			
+			 This is the fundamental command of ChatWarn (hence the name), this command essentially gets the player
+			 and warns them. Warn levels are tracked by the config and with each warn, the warned player's warn level goes up by 1 int.
+			 In this command there is the 'chatwarn.bypass' permission which allows players with this permission to not be warned, however
+			 players with the 'chatwarn.bypassall' permission will still be able to warn players with the 'chatwarn.bypass' permission so it
+			 is recommended that players who are owners/admins only recieve 'chatwarn.bypassall'
+			*/
 			if(args[0].equalsIgnoreCase("warn")) {
 				if(!sender.hasPermission("chatwarn.warn")) {
 					sender.sendMessage(ChatColor.RED + translate(noPerm,from,to));
@@ -625,12 +590,9 @@ public class ChatWarn extends JavaPlugin implements Listener,java.io.Serializabl
 				}
 
 			}
-			
-			
-			
 			//End of chatwarn command
 	}
-		
+		// This config node depending if it is either true or false will allow players with the 'chatwarn.warn' permission to use /warn rather than /chatwarn warn
 		if(getConfig().getBoolean("EnableWarnCommandShortcut") == true) {
 		if(cmd.getName().equalsIgnoreCase("warn")){
 				if(!sender.hasPermission("chatwarn.warn")) {
@@ -729,6 +691,7 @@ public class ChatWarn extends JavaPlugin implements Listener,java.io.Serializabl
 
 		}
 		}else {
+			// if the shortcut is disabled the command sender will recieve this message
 		sender.sendMessage(ChatWarnPrefix + ChatColor.RED + translate(" The command shortcut is disabled in the config. If you believe this is an issue please speak to an administrator or owner",from,to));
 		}
 		return true;
@@ -761,7 +724,7 @@ public class ChatWarn extends JavaPlugin implements Listener,java.io.Serializabl
 	} 
 	
 	//An included workaround patch for the book duplication exploit that also alerts players with the "chatwarn.notify" permission that somebody has attempted to write a book more than 5 times
-	//Unfortunately the only way to reliably prevent the exploit from happening is to disable the ability to write books altogether
+	//Unfortunately the only way I have found out to 'patch' this is by disabling the ability to write books altogether
 	 public HashMap<String, Integer> bookEdits = new HashMap<String, Integer>();
 	@EventHandler
 	public void onBook(PlayerEditBookEvent e) {
@@ -780,7 +743,11 @@ public class ChatWarn extends JavaPlugin implements Listener,java.io.Serializabl
 		}
 
 	}
-	//This is the mute system that was integreted into chatwarn and still needs work to implement the timer system
+	/*
+	 This is the mute system that was integreted into chatwarn and still needs work to implement the timer system
+	 Unfortunately, the timer system is still commented out as there were some issues with it, but everything that isn't commented out
+	 still works as intended
+	 */
 	@EventHandler
 	public void onPlayerChat2(AsyncPlayerChatEvent e ){
 		String uuid = e.getPlayer().getUniqueId().toString();
